@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'nebula.ospackage'
 
 ospackage {
-  packageName = 'judicial-migration-service'
+  packageName = '${project.name}'
   // Uses the main project version
   version = "${project.version}"
 
@@ -20,7 +20,7 @@ ospackage {
   arch = NOARCH
 
   // Sets our working directory and permissions, basically
-  into "/opt/local/judicial-migration-service"
+  into "/opt/local/${project.name}"
 
   // Copy the actual .jar file
   from(jar.outputs.files) {
@@ -46,17 +46,17 @@ buildRpm {
   //permissionGroup "jdwms-user"
 
   // Creates an empty log directory
-  directory("/opt/local/judicial-migration-service/logs", 0755)
+  directory("/opt/local/${project.name}/logs", 0755)
 
   /* Creates a symlink to the jar file as an init.d script
      (this functionality is provided by Spring Boot) */
-  link("/etc/init.d/judicial-migration-service",
-    "/opt/local/judicial-migration-service/bin/judicial-migration-service.jar")
+  link("/etc/init.d/${project.name}",
+    "/opt/local/${project.name}/bin/${project.name}.jar")
 
   /* According to Spring Boot, the conf file needs to sit
      next to the jar, so we just create a symlink */
-  link("/opt/local/judicial-migration-service/bin/judicial-migration-service.conf",
-    "/opt/local/judicial-migration-service/conf/judicial-migration-service.conf")
+  link("/opt/local/${project.name}/bin/${project.name}.conf",
+    "/opt/local/${project.name}/conf/${project.name}.conf")
 }
 
 ```

@@ -1,4 +1,8 @@
 ```groovy
+group='com.group.name'
+version='1.0'
+description='application description'
+
 def buildTime() {
   final dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ")
   dateFormat.timeZone = TimeZone.getTimeZone('GMT')
@@ -17,9 +21,9 @@ task cleanWebapp(type: Delete){
 
 ```groovy
 jar {
-  baseName = "judicial-migration-service"
+  baseName = "application-name"
   manifest {
-    attributes("Implementation-Title": "Judicial Migration Service", "Implementation-Version": "${project.version}")
+    attributes("Implementation-Title": "${project.description}", "Implementation-Version": "${project.version}")
   }
 //  archiveName = "${jar.baseName}.jar"
 }
@@ -46,7 +50,7 @@ springBoot {
       // Override buildInfo property time
       time                 : buildTime(),
       // Override name property
-      name                 : 'judicial-migration-service',
+      name                 : 'application-name',
       jenkinsTag           : System.getenv("BUILD_TAG") ?: "",
       jenkinsBuildNumber   : System.getenv("BUILD_NUMBER") ?: ""
     ]

@@ -3,10 +3,10 @@
 ./gradlew clean build buildRpm
 
 # Then run the following commands to deploy the rpm as a service
-sudo service judicial-migration-service stop || true
-sudo rpm -e judicial-migration-service || true
+sudo service application-name stop || true
+sudo rpm -e application-name || true
 
-sudo rpm -Uvh build/distributions/judicial-migration-service-1.0-${BUILD_NUMBER}.noarch.rpm
+sudo rpm -Uvh build/distributions/application-name-1.0-${BUILD_NUMBER}.noarch.rpm
 
-sudo service judicial-migration-service start
+sudo service application-name start
 ```
