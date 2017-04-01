@@ -72,4 +72,9 @@ test {
   //add system properties
   systemProperties System.properties
 }
+
+
+if(System.env.BUILD_NUMBER){
+  // add the stuff you want in your manifest
+}
 ```

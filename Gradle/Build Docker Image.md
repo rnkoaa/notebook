@@ -1,3 +1,8 @@
+Below is a simple gradle task that can be used to do a docker build
+straight from gradle.
+
+** This sample is taken from Jhipster gradle build tool **
+
 ```groovy
 import org.gradle.internal.os.OperatingSystem
 
