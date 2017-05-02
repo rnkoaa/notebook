@@ -1,3 +1,5 @@
+# Example script to build rpm artifacts and deploy it using jenkins
+
 ```sh
 # execute the following gradle tasks
 ./gradlew clean build buildRpm
