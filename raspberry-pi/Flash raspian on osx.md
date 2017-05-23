@@ -19,7 +19,7 @@ sudo diskutil partitionDisk /dev/disk2 1 MBR "Free Space" "%noformat%" 100%
 
 Write the jesse image to the disk
 ```sh
-sudo dd if=2017-03-02-raspbian-jessie-lite.img of=/dev/rdisk2 bs=1m
+sudo dd if=2017-03-02-raspbian-jessie-lite.img of=/dev/rdisk1 bs=1m
 ```
 
 To find out the status of the writing press `ctrl+t`
