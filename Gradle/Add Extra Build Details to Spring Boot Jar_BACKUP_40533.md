@@ -75,8 +75,16 @@ test {
   systemProperties System.properties
 }
 
+<<<<<<< HEAD
+
+if(System.env.BUILD_NUMBER){
+  // add the stuff you want in your manifest
+}
+```
+=======
 if(System.env.BUILD_NUMBER){
   // add the stuff you want in your manifest
 }
 ```
 
+>>>>>>> e2d10a420d528b025225606a475d180a00af569e

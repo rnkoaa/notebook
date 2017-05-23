@@ -1,5 +1,3 @@
-# Sample Gradle tasks
-
 ```groovy
 group='com.group.name'
 version='1.0'
@@ -74,9 +72,4 @@ test {
   //add system properties
   systemProperties System.properties
 }
-
-if(System.env.BUILD_NUMBER){
-  // add the stuff you want in your manifest
-}
 ```
-

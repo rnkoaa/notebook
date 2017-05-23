@@ -1,7 +1,7 @@
-
-## Jenkins Piple Script for Building Java Applications
+# Jenkins Piple Script for Building Java Applications
 
 The script below is used to build a java application, deploy it to a maven jar using gradle mavenDeployer, then building a docker image and deploying it to a docker registry.
+
 ```groovy
 /* Only keep the 10 most recent builds. */
 def projectProperties = [

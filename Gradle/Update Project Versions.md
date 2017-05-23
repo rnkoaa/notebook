@@ -1,3 +1,5 @@
+# Gradle task to update build variables.
+
 ```groovy
 
 def JENKINS_BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "1"

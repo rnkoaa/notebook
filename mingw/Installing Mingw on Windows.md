@@ -1,3 +1,5 @@
+# Installing Msys2 and MingW on Windows
+
 Download and Install msys2 from [MSYS2 Website](http://www.msys2.org/). Follow instructions carefully.
 
 Update MYSYS2 by following the instructions [here](https://github.com/msys2/msys2/wiki/MSYS2-installation)
@@ -20,3 +22,10 @@ To Install ZSH as the preferred shell, follow the instructions given in the answ
 ### Install CMDER
 
 Install Portable commandline from [here](http://cmder.net/). then put it on your path. 
+
+Install `oh-my-zsh`, then add the following to end of `~/.oh-my-zsh/oh-my-zsh.sh`
+
+```sh
+export HOME=/c/Users/$USER
+export SHELL=/usr/bin/zsh
+```

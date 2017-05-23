@@ -1,4 +1,6 @@
-Open cmder 
+# Set Zsh as the default Task
+
+Open cmder
 
 1. Click on the top left corner to open the menu, then select settings to open the settings window.
 2. Go to `Startup` -> `Tasks`. 
@@ -9,3 +11,10 @@ Open cmder
 4. Save Settings
 5. Back to `Startup`, In the specified name task section, select the task created above in the list. Save and exit. 
 6. Now a new cmder task will default to zsh.
+
+Install `oh-my-zsh`, then add the following to end of `~/.oh-my-zsh/oh-my-zsh.sh`
+
+```sh
+export HOME=/c/Users/$USER
+export SHELL=/usr/bin/zsh
+```
