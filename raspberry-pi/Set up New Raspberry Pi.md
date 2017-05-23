@@ -104,6 +104,11 @@ sudo raspi-config
 When the menu opens go to `Advanced Options` menu.
 
 ## Rename PI user for security
+
+See how a detailed instructions on how to rename users using in [Rename Default user.md](Rename Default User.md)
+
+If those instructions fail, try the following:
+
 Assign password to the root account
 ```sh
  sudo passwd root
@@ -121,3 +126,10 @@ Disable the root account or lock it with the following account for extra securit
 ```
 
 ## Disable password authentication for ssh.
+
+### enable cpusets for cgroup and docker
+
+```sh
+$ vim /boot/cmdline.txt
+## Add `cgroup_enable=cpuset` before `elevator=deadline`
+```
