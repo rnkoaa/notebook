@@ -107,8 +107,6 @@ When the menu opens go to `Advanced Options` menu.
 
 See how a detailed instructions on how to rename users using in [Rename Default user.md](Rename Default User.md)
 
-If those instructions fail, try the following:
-
 Assign password to the root account
 ```sh
  sudo passwd root
