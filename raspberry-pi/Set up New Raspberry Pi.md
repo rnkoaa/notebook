@@ -1,12 +1,20 @@
+# This is a how to setup a new raspberry pi 
+
 * Format disk
 * Flash raspbian os onto disk.
 * plug flash memory into raspberry and boot.
 * username is `pi` and password is `raspberry`
 
 ## Update the keyboard Locale
+
+```sh
+sudo nano /etc/default/keyboard
+```
+
 Update the line `XKBLAYOUT` to read `XKBLAYOUT="us"`, Then reboot the pi for the new keyboard layout to take effect.
 
 ## Change the host name of the pi machine
+
 change the name from `raspberrypi` to the name of the role for this pi, eg `node1` if it is going to be a part of a cluster.
 in the following files
 
@@ -14,18 +22,25 @@ in the following files
     /etc/hostname
 
 ## Change Memory split
+
 Since we will not be using any gui features, we do not need that much memory for the graphics, so we can reduce the gui memory.
+
 * Go to `raspi-config` menu.
+
 ```sh
 sudo raspi-config
 ```
+
 * Select the `Advanced Options` menu.
 * In the `Advanced Options` menu, select `A3 Memory Split` sub section. then change the value from the default 64 to 16.
 * Exit and reboot for the changes to take effect.
 
-## Configure Wifi ##
+## Configure Wifi
+
 To configure wifi, we are going to use `wpa_supplicant` which already comes withe version of raspbian.
+
 * First take a backup of the `wpa_supplicant.conf` file.
+
 ```sh
 sudo -s
 cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf.bak
@@ -36,8 +51,11 @@ rm /etc/wpa_supplicant/wpa_supplicant.conf
 wpa_passphrase "Name of wifi" > /etc/wpa_supplicant/wpa_supplicant.conf
 # After this command, you will be required to type in the password for the wifi.
 ```
-### Configure DHCP 
+
+### Configure DHCP
+
 * Change `/etc/network/interfaces` to look like this.
+
 ```sh
 auto lo
 iface lo inet loopback
@@ -49,7 +67,9 @@ allow-hotplug wlan0
 iface wlan0 inet dhcp
 wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 ```
+
 * Restart the dhcp service for the wifi to connect and receive an ip address
+
 ```sh
 # scan the wifi's in the area to find your wifi
 sudo iwlist wlan0 scan | grep wifi name
@@ -57,10 +77,13 @@ iwconfig
 sudo dhcpcd wlan0
 wpa_supplicant -B w -D wext -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 ```
+
 * if the pi does not connect, reboot for the connection to take place.
 
-### Configure static Ip 
+### Configure static Ip
+
 Change `/etc/network/interfaces` to look like this.
+
 ```sh
 auto lo
 iface lo inet loopback
@@ -79,15 +102,18 @@ wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 
 * Reboot for the connection to take place or try any of the following for the machine to connect to its wifi.
+
 ```sh
 # scan the wifi's in the area to find your wifi
 sudo iwlist wlan0 scan | grep wifi name
 iwconfig
 wpa_supplicant -B w -D wext -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 ```
+
 * if the pi does not connect, reboot for the connection to take place.
 
 ### Set Default gateway
+
 ```sh
 sudo route add default gw 192.168.1.1
 ```
@@ -108,22 +134,27 @@ When the menu opens go to `Advanced Options` menu.
 See how a detailed instructions on how to rename users using in [Rename Default user.md](Rename Default User.md)
 
 Assign password to the root account
+
 ```sh
  sudo passwd root
 ```
+
 Then log out. once logged out, log back in as root. and change the user name as follows:
+
 ```sh
 # usermod -l myuname pi
 # usermod -m -d /home/myuname myuname
 ```
+
 where `myuname` is the new name you wish to change the `pi` user to. finally log out then log back in as the new user `myuname`
 
 Disable the root account or lock it with the following account for extra security
+
 ```sh
  sudo passwd -l root
 ```
 
-## Disable password authentication for ssh.
+## Disable password authentication for ssh
 
 ### enable cpusets for cgroup and docker
 
